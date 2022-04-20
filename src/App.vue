@@ -17,38 +17,31 @@ export default {
     return {
       searchText: "",
       apiUrl: "https://api.themoviedb.org/3/search/",
+      apiKey: "9e7093415d92ae4b00347920cb93d49c",
       movies: [],
     };
-  },
-  mounted() {
-    this.loadApi();
   },
   methods: {
     searchedText(searchText) {
       this.searchText = searchText;
       console.log(this.searchText);
+      this.loadApi();
     },
     loadApi() {
       const params = {
-        api_key: "9e7093415d92ae4b00347920cb93d49c",
+        api_key: this.apiKey,
         query: this.searchText,
         language: "it-IT",
       };
       if (this.searchText.length > 0) {
-        axios
-          .get(this.apiUrl + "movie", { params })
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        axios.get(this.apiUrl + "movie", { params }).then((response) => {
+          console.log(response.data);
+        });
       }
     },
   },
 };
 </script>
-
 <style lang="scss">
 @import "./assets/data/general";
 
