@@ -30,14 +30,22 @@ export default {
   margin: 30px 0px;
   text-align: left;
   border: 1px solid white;
+  position: relative;
 }
 
 .text {
   padding: 40px 20px;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  overflow-y: auto;
 }
 
 img {
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 </style>

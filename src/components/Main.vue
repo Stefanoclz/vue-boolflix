@@ -11,7 +11,12 @@
     </div>
     <h2 v-show="series.length > 0">Series</h2>
     <div class="container">
-      <Series v-for="serie in series" :key="serie.id" :item="serie" />
+      <Series
+        v-for="serie in series"
+        :key="serie.id"
+        :item="serie"
+        :link="imageLink"
+      />
     </div>
   </main>
 </template>
