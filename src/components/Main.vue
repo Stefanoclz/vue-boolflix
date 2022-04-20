@@ -1,31 +1,43 @@
 <template>
-  <div class="card">
-    <div><strong>Titolo: </strong>{{ item.title }}</div>
-    <div><strong>Titolo originale: </strong>{{ item.original_title }}</div>
-    <div><strong>Lingua: </strong>{{ item.original_language }}</div>
-    <div><strong>Voto: </strong>{{ item.vote_average }}</div>
-    <div><strong>Overview: </strong>{{ item.overview }}</div>
-  </div>
+  <main>
+    <h2 v-show="movies.length > 0">Films</h2>
+    <div class="container">
+      <Films v-for="movie in movies" :key="movie.id" :item="movie" />
+    </div>
+    <h2 v-show="series.length > 0">Series</h2>
+    <div class="container">
+      <Series v-for="serie in series" :key="serie.id" :item="serie" />
+    </div>
+  </main>
 </template>
 
 <script>
+import Films from "@/components/Films.vue";
+import Series from "@/components/Series.vue";
 export default {
   name: "mainComponent",
+  components: {
+    Films,
+    Series,
+  },
   props: {
-    item: Object,
+    movies: Array,
+    series: Array,
   },
 };
 </script>
 
 <style scoped lang="scss">
-.card {
-  width: calc(100% / 3) - 5%;
-  min-height: 200px;
-  background-color: black;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 5%;
+  width: 80%;
+  margin: 0px auto;
+}
+
+h2 {
   color: white;
-  margin: 30px 0px;
-  padding: 40px 20px;
-  text-align: left;
-  border: 1px solid white;
+  margin: 20px 0px;
 }
 </style>

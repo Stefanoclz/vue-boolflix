@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Header @insertedText="searchedText" />
-    <div class="container">
-      <Main v-for="movie in movies" :key="movie.id" :item="movie" />
-    </div>
+    <Main :movies="movies" :series="series" />
   </div>
 </template>
 
@@ -24,26 +22,38 @@ export default {
       apiUrl: "https://api.themoviedb.org/3/search/",
       apiKey: "9e7093415d92ae4b00347920cb93d49c",
       movies: [],
+      series: [],
     };
   },
   methods: {
     searchedText(searchText) {
       this.searchText = searchText;
-      console.log(this.searchText);
-      this.loadApi();
+      this.loadMovieApi();
+      this.loadTvApi();
     },
-    loadApi() {
+    loadApi(kind) {
       const params = {
         api_key: this.apiKey,
         query: this.searchText,
         language: "it-IT",
       };
       if (this.searchText.length > 0) {
-        axios.get(this.apiUrl + "movie", { params }).then((response) => {
-          this.movies = response.data.results;
-          console.log(this.movies);
+        axios.get(this.apiUrl + kind, { params }).then((response) => {
+          if (kind === "movie") {
+            this.movies = response.data.results;
+            console.log("movie", this.movies);
+          } else if (kind === "tv") {
+            this.series = response.data.results;
+            console.log("serie", this.series);
+          }
         });
       }
+    },
+    loadMovieApi() {
+      this.loadApi("movie");
+    },
+    loadTvApi() {
+      this.loadApi("tv");
     },
   },
 };
@@ -57,13 +67,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 5%;
-  width: 80%;
-  margin: 0px auto;
 }
 </style>
