@@ -2,7 +2,12 @@
   <main>
     <h2 v-show="movies.length > 0">Films</h2>
     <div class="container">
-      <Films v-for="movie in movies" :key="movie.id" :item="movie" />
+      <Films
+        v-for="movie in movies"
+        :key="movie.id"
+        :item="movie"
+        :link="imageLink"
+      />
     </div>
     <h2 v-show="series.length > 0">Series</h2>
     <div class="container">
@@ -20,6 +25,11 @@ export default {
     Films,
     Series,
   },
+  data() {
+    return {
+      imageLink: "https://image.tmdb.org/t/p/w342/",
+    };
+  },
   props: {
     movies: Array,
     series: Array,
@@ -32,8 +42,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   column-gap: 5%;
-  width: 80%;
+  width: 85%;
   margin: 0px auto;
+  justify-content: center;
 }
 
 h2 {
