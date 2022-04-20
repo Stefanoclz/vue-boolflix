@@ -1,9 +1,10 @@
 <template>
   <div class="card">
-    <p>{{ item.title }}</p>
-    <p>{{ item.original_title }}</p>
-    <p>{{ item.vote_average }}</p>
-    <p>{{ item.overview }}</p>
+    <div><strong>Titolo: </strong>{{ item.title }}</div>
+    <div><strong>Titolo originale: </strong>{{ item.original_title }}</div>
+    <div><strong>Lingua: </strong>{{ item.original_language }}</div>
+    <div><strong>Voto: </strong>{{ item.vote_average }}</div>
+    <div><strong>Overview: </strong>{{ item.overview }}</div>
   </div>
 </template>
 
