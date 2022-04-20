@@ -1,17 +1,22 @@
 <template>
   <div id="app">
     <Header @insertedText="searchedText" />
+    <div class="container">
+      <Main v-for="movie in movies" :key="movie.id" :item="movie" />
+    </div>
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import axios from "axios";
+import Main from "@/components/Main.vue";
 
 export default {
   name: "App",
   components: {
     Header,
+    Main,
   },
   data() {
     return {
@@ -35,7 +40,8 @@ export default {
       };
       if (this.searchText.length > 0) {
         axios.get(this.apiUrl + "movie", { params }).then((response) => {
-          console.log(response.data);
+          this.movies = response.data.results;
+          console.log(this.movies);
         });
       }
     },
@@ -51,5 +57,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 5%;
+  width: 80%;
+  margin: 0px auto;
 }
 </style>
