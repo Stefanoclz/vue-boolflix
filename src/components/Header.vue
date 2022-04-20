@@ -1,7 +1,10 @@
 <template>
   <header>
     <h2>BOOLFLIX</h2>
-    <input type="text" v-model="searchText" />
+    <div>
+      <input type="text" v-model="searchText" />
+      <button @click="filterList">Cerca</button>
+    </div>
   </header>
 </template>
 
@@ -12,6 +15,11 @@ export default {
     return {
       searchText: "",
     };
+  },
+  methods: {
+    filterList() {
+      this.$emit("insertedText", this.searchText);
+    },
   },
 };
 </script>
