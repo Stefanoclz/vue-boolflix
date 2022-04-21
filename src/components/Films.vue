@@ -4,29 +4,7 @@
     <div class="text">
       <div><strong>Titolo: </strong>{{ item.title }}</div>
       <div><strong>Titolo originale: </strong>{{ item.original_title }}</div>
-      <div>
-        <strong>Lingua: </strong>{{ item.original_language }}
-        <img
-          v-if="
-            item.original_language !== 'en' && item.original_language !== 'ja'
-          "
-          :src="flagLink + item.original_language"
-          :alt="item.original_language + 'flag'"
-          class="flag"
-        />
-        <img
-          v-show="item.original_language === 'en'"
-          src="@/assets/data/GB_flag.png"
-          alt="GB flag"
-          class="flag"
-        />
-        <img
-          v-show="item.original_language === 'ja'"
-          src="@/assets/data/Japan_flag.jpg"
-          alt="GB flag"
-          class="flag"
-        />
-      </div>
+      <div><strong>Lingua: </strong>{{ item.original_language }}</div>
       <Star :singleVote="item.vote_average" />
       <div><strong>Overview: </strong>{{ item.overview }}</div>
     </div>

@@ -7,23 +7,8 @@
       <div>
         <strong>Lingua: </strong>{{ item.original_language }}
         <img
-          v-if="
-            item.original_language !== 'en' && item.original_language !== 'ja'
-          "
-          :src="flagLink + item.original_language"
+          :src="flagLink + item.original_language + '.png'"
           :alt="item.original_language + 'flag'"
-          class="flag"
-        />
-        <img
-          v-show="item.original_language === 'en'"
-          src="@/assets/data/GB_flag.png"
-          alt="GB flag"
-          class="flag"
-        />
-        <img
-          v-show="item.original_language === 'ja'"
-          src="@/assets/data/Japan_flag.jpg"
-          alt="GB flag"
           class="flag"
         />
       </div>
@@ -48,7 +33,7 @@ export default {
   },
   data() {
     return {
-      flagLink: "https://countryflagsapi.com/png/",
+      flagLink: "src/assets/data/",
     };
   },
 };
