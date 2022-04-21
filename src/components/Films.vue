@@ -42,7 +42,7 @@ export default {
 <style scoped lang="scss">
 .card {
   width: calc(100% / 3) - 10%;
-  max-height: 500px;
+  height: 500px;
   background-color: black;
   color: white;
   margin: 30px 0px;
@@ -59,21 +59,23 @@ export default {
   top: 0;
   height: 100%;
   overflow-y: auto;
-  display: none;
+  opacity: 0%;
+  transition: opacity 0.2s ease-in;
 }
 
 .poster {
   width: 100%;
   height: 100%;
   z-index: 0;
+  transition: opacity 0.2s ease-in;
 }
 
 .card:hover .poster {
-  display: none;
+  opacity: 20%;
 }
 
 .card:hover .text {
-  display: block;
+  opacity: 100%;
 }
 
 .flag {
