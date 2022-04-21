@@ -5,7 +5,7 @@
       <div><strong>Titolo: </strong>{{ item.name }}</div>
       <div><strong>Titolo originale: </strong>{{ item.original_name }}</div>
       <div><strong>Lingua: </strong>{{ item.original_language }}</div>
-      <div><strong>Voto: </strong>{{ item.vote_average }}</div>
+      <h4><strong>Voto: </strong>{{ voto }}</h4>
       <div><strong>Overview: </strong>{{ item.overview }}</div>
     </div>
   </div>
@@ -17,6 +17,7 @@ export default {
   props: {
     item: Object,
     link: String,
+    voto: Number,
   },
 };
 </script>

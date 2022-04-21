@@ -7,6 +7,8 @@
         :key="movie.id"
         :item="movie"
         :link="imageLink"
+        :voto="voto"
+        :class="starCalculator(movie)"
       />
     </div>
     <h2 v-show="series.length > 0">Series</h2>
@@ -16,6 +18,8 @@
         :key="serie.id"
         :item="serie"
         :link="imageLink"
+        :voto="voto"
+        :class="starCalculator(serie)"
       />
     </div>
   </main>
@@ -33,11 +37,38 @@ export default {
   data() {
     return {
       imageLink: "https://image.tmdb.org/t/p/w342/",
+      voto: "",
     };
   },
   props: {
     movies: Array,
     series: Array,
+  },
+  methods: {
+    starCalculator(object) {
+      console.log(
+        "voto",
+        object.name,
+        object.title,
+        object.vote_average,
+        "=>",
+        Math.round(object.vote_average / 2)
+      );
+      this.voto = Math.round(object.vote_average / 2);
+      if (this.voto === 1) {
+        return "star_1";
+      } else if (this.voto === 2) {
+        return "star_2";
+      } else if (this.voto === 3) {
+        return "star_3";
+      } else if (this.voto === 4) {
+        return "star_4";
+      } else if (this.voto === 5) {
+        return "star_5";
+      } else {
+        return "ND";
+      }
+    },
   },
 };
 </script>
@@ -55,5 +86,25 @@ export default {
 h2 {
   color: white;
   margin: 20px 0px;
+}
+
+.star_1 h4 {
+  color: yellow;
+}
+
+.star_2 h4 {
+  color: yellow;
+}
+
+.star_3 h4 {
+  color: yellow;
+}
+
+.star_4 h4 {
+  color: yellow;
+}
+
+.star_5 h4 {
+  color: yellow;
 }
 </style>
