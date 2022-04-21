@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img :src="link + item.poster_path" />
+    <img class="poster" :src="link + item.poster_path" />
     <div class="text">
       <div><strong>Titolo: </strong>{{ item.name }}</div>
       <div><strong>Titolo originale: </strong>{{ item.original_name }}</div>
@@ -13,7 +13,12 @@
         />
       </div>
       <Star :singleVote="item.vote_average" />
-      <div><strong>Overview: </strong>{{ item.overview }}</div>
+      <div>
+        <strong>Overview: </strong>{{ item.overview }}
+        <h3 v-show="item.overview.length === 0">
+          Riassunto trama non disponibile
+        </h3>
+      </div>
     </div>
   </div>
 </template>
@@ -54,12 +59,21 @@ export default {
   top: 0;
   height: 100%;
   overflow-y: auto;
+  display: none;
 }
 
-img {
+.poster {
   width: 100%;
   height: 100%;
   z-index: 0;
+}
+
+.card:hover .poster {
+  display: none;
+}
+
+.card:hover .text {
+  display: block;
 }
 
 .flag {
