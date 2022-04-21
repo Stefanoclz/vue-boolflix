@@ -8,6 +8,7 @@
         :item="movie"
         :link="imageLink"
         :voto="voto"
+        :star="star"
         :class="starCalculator(movie)"
       />
     </div>
@@ -19,6 +20,7 @@
         :item="serie"
         :link="imageLink"
         :voto="voto"
+        :star="star"
         :class="starCalculator(serie)"
       />
     </div>
@@ -38,6 +40,7 @@ export default {
     return {
       imageLink: "https://image.tmdb.org/t/p/w342/",
       voto: "",
+      star: "",
     };
   },
   props: {
@@ -46,25 +49,25 @@ export default {
   },
   methods: {
     starCalculator(object) {
-      console.log(
+      /* console.log(
         "voto",
         object.name,
         object.title,
         object.vote_average,
         "=>",
         Math.round(object.vote_average / 2)
-      );
+      );*/
       this.voto = Math.round(object.vote_average / 2);
       if (this.voto === 1) {
-        return "star_1";
+        return (this.star = '<i class="fa-solid fa-star"></i>');
       } else if (this.voto === 2) {
-        return "star_2";
+        return (this.star = '<i class="fa-solid fa-star"></i>');
       } else if (this.voto === 3) {
-        return "star_3";
+        return (this.star = '<i class="fa-solid fa-star"></i>');
       } else if (this.voto === 4) {
-        return "star_4";
+        return (this.star = '<i class="fa-solid fa-star"></i>');
       } else if (this.voto === 5) {
-        return "star_5";
+        return (this.star = '<i class="fa-solid fa-star"></i>');
       } else {
         return "ND";
       }
@@ -86,25 +89,5 @@ export default {
 h2 {
   color: white;
   margin: 20px 0px;
-}
-
-.star_1 h4 {
-  color: yellow;
-}
-
-.star_2 h4 {
-  color: yellow;
-}
-
-.star_3 h4 {
-  color: yellow;
-}
-
-.star_4 h4 {
-  color: yellow;
-}
-
-.star_5 h4 {
-  color: yellow;
 }
 </style>
