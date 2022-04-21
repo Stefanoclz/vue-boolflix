@@ -4,7 +4,14 @@
     <div class="text">
       <div><strong>Titolo: </strong>{{ item.title }}</div>
       <div><strong>Titolo originale: </strong>{{ item.original_title }}</div>
-      <div><strong>Lingua: </strong>{{ item.original_language }}</div>
+      <div>
+        <strong>Lingua: </strong>{{ item.original_language }}
+        <img
+          :src="require(`@/assets/data/${item.original_language}.png`)"
+          :alt="item.original_language + 'flag'"
+          class="flag"
+        />
+      </div>
       <Star :singleVote="item.vote_average" />
       <div><strong>Overview: </strong>{{ item.overview }}</div>
     </div>

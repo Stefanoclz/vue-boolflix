@@ -7,7 +7,7 @@
       <div>
         <strong>Lingua: </strong>{{ item.original_language }}
         <img
-          :src="flagLink + item.original_language + '.png'"
+          :src="require(`@/assets/data/${item.original_language}.png`)"
           :alt="item.original_language + 'flag'"
           class="flag"
         />
@@ -30,11 +30,6 @@ export default {
   },
   components: {
     Star,
-  },
-  data() {
-    return {
-      flagLink: "src/assets/data/",
-    };
   },
 };
 </script>
