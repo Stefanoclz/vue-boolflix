@@ -5,22 +5,24 @@
       <div><strong>Titolo: </strong>{{ item.title }}</div>
       <div><strong>Titolo originale: </strong>{{ item.original_title }}</div>
       <div><strong>Lingua: </strong>{{ item.original_language }}</div>
-      <div>
-        <strong>Voto: </strong>{{ voto }} <span>{{ star }}</span>
-      </div>
+      <Star :singleVote="item.vote_average" />
       <div><strong>Overview: </strong>{{ item.overview }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import Star from "@/components/Star.vue";
+
 export default {
   name: "filmList",
   props: {
     item: Object,
     link: String,
     voto: Number,
-    star: String,
+  },
+  components: {
+    Star,
   },
 };
 </script>

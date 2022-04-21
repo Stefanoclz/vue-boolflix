@@ -5,22 +5,24 @@
       <div><strong>Titolo: </strong>{{ item.name }}</div>
       <div><strong>Titolo originale: </strong>{{ item.original_name }}</div>
       <div><strong>Lingua: </strong>{{ item.original_language }}</div>
-      <div>
-        <strong>Voto: </strong>{{ voto }} <span>{{ star }}</span>
-      </div>
+      <Star :singleVote="item.vote_average" />
       <div><strong>Overview: </strong>{{ item.overview }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import Star from "@/components/Star.vue";
+
 export default {
   name: "seriesList",
   props: {
     item: Object,
     link: String,
     voto: Number,
-    star: String,
+  },
+  components: {
+    Star,
   },
 };
 </script>
