@@ -7,8 +7,15 @@
       <div>
         <strong>Lingua: </strong>{{ item.original_language }}
         <img
+          v-if="this.presentsFlags.includes(item.original_language)"
           :src="require(`@/assets/data/${item.original_language}.png`)"
           :alt="item.original_language + 'flag'"
+          class="flag"
+        />
+        <img
+          v-if="!this.presentsFlags.includes(item.original_language)"
+          src="@/assets/data/unknown.png"
+          alt="flag not present"
           class="flag"
         />
       </div>
@@ -35,6 +42,22 @@ export default {
   },
   components: {
     Star,
+  },
+  data() {
+    return {
+      presentsFlags: [
+        "it",
+        "en",
+        "de",
+        "es",
+        "fr",
+        "ru",
+        "ja",
+        "ko",
+        "nl",
+        "pl",
+      ],
+    };
   },
 };
 </script>
