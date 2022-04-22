@@ -21,8 +21,10 @@ export default {
       searchText: "",
       apiUrl: "https://api.themoviedb.org/3/search/",
       apiKey: "9e7093415d92ae4b00347920cb93d49c",
+      apiUrlCast: "https://api.themoviedb.org/3/",
       movies: [],
       series: [],
+      filmId: [],
     };
   },
   methods: {
@@ -42,6 +44,8 @@ export default {
           if (kind === "movie") {
             this.movies = response.data.results;
             console.log("movie", this.movies);
+            this.searchMovieID();
+            this.loadCast();
           } else if (kind === "tv") {
             this.series = response.data.results;
             console.log("serie", this.series);
@@ -54,6 +58,28 @@ export default {
     },
     loadTvApi() {
       this.loadApi("tv");
+    },
+    searchMovieID() {
+      if (this.movies.length > 0) {
+        for (let i = 0; i < this.movies.length; i++) {
+          let id = this.movies[i].id;
+          this.filmId.push(id);
+        }
+      }
+      console.log("idList", this.filmId);
+    },
+    loadCast() {
+      for (let i = 0; i < this.filmId.length; i++) {
+        const castParams = {
+          api_key: this.apiKey,
+          movie_id: this.filmId[i],
+        };
+        axios
+          .get(this.apiUrlCast + "movie", { castParams }, +"credits")
+          .then((response) => {
+            console.log("TEST CAST", response);
+          });
+      }
     },
   },
 };

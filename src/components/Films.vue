@@ -39,6 +39,7 @@ export default {
     item: Object,
     link: String,
     voto: Number,
+    id: Number,
   },
   components: {
     Star,

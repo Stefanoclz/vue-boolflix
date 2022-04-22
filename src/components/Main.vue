@@ -24,6 +24,7 @@
 <script>
 import Films from "@/components/Films.vue";
 import Series from "@/components/Series.vue";
+
 export default {
   name: "mainComponent",
   components: {
@@ -34,11 +35,25 @@ export default {
     return {
       imageLink: "https://image.tmdb.org/t/p/w342/",
       voto: "",
+      apiUrl: "https://api.themoviedb.org/3/search/",
+      apiKey: "9e7093415d92ae4b00347920cb93d49c",
+      filmId: [],
     };
   },
   props: {
     movies: Array,
     series: Array,
+  },
+  methods: {
+    searchID() {
+      if (this.movie.length > 0) {
+        for (let i = 0; i < this.movies.length; i++) {
+          let id = this.movies[i].id;
+          this.filmId = id;
+        }
+      }
+      console.log(this.filmId);
+    },
   },
 };
 </script>
