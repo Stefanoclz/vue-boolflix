@@ -21,7 +21,7 @@ export default {
       searchText: "",
       apiUrl: "https://api.themoviedb.org/3/search/",
       apiKey: "9e7093415d92ae4b00347920cb93d49c",
-      apiUrlCast: "https://api.themoviedb.org/3/",
+      apiUrlCast: "https://api.themoviedb.org/3/movie/",
       movies: [],
       series: [],
       filmId: [],
@@ -70,14 +70,16 @@ export default {
     },
     loadCast() {
       for (let i = 0; i < this.filmId.length; i++) {
-        const castParams = {
-          api_key: this.apiKey,
-          movie_id: this.filmId[i],
-        };
         axios
-          .get(this.apiUrlCast + "movie", { castParams }, +"credits")
+          .get(
+            this.apiUrlCast +
+              this.filmId[i] +
+              "/credits?api_key=" +
+              this.apiKey +
+              "&language=it-IT"
+          )
           .then((response) => {
-            console.log("TEST CAST", response);
+            console.log("TEST CAST", response.data.cast);
           });
       }
     },
