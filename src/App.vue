@@ -25,6 +25,7 @@ export default {
       movies: [],
       series: [],
       filmId: [],
+      castMembers: [],
     };
   },
   methods: {
@@ -69,17 +70,18 @@ export default {
       console.log("idList", this.filmId);
     },
     loadCast() {
+      const params = {
+        api_key: this.apiKey,
+        language: "it-IT",
+      };
       for (let i = 0; i < this.filmId.length; i++) {
         axios
-          .get(
-            this.apiUrlCast +
-              this.filmId[i] +
-              "/credits?api_key=" +
-              this.apiKey +
-              "&language=it-IT"
-          )
+          .get(`https://api.themoviedb.org/3/movie/${this.filmId[i]}/credits`, {
+            params,
+          })
           .then((response) => {
-            console.log("TEST CAST", response.data.cast);
+            this.castMembers = response.data.cast;
+            console.log("TEST CAST", this.castMembers);
           });
       }
     },
