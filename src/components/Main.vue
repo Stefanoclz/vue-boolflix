@@ -3,10 +3,13 @@
     <h2 v-show="movies.length > 0">Films</h2>
     <div class="container">
       <Films
-        v-for="movie in movies"
-        :key="movie.id"
+        v-for="(movie, index) in movies"
+        :key="index"
         :item="movie"
+        :cards="movies"
         :link="imageLink"
+        :actor="actor"
+        :allCast="allCast"
       />
     </div>
     <h2 v-show="series.length > 0">Series</h2>
@@ -43,6 +46,8 @@ export default {
   props: {
     movies: Array,
     series: Array,
+    actor: Object,
+    allCast: Array,
   },
   methods: {
     searchID() {

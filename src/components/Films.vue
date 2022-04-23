@@ -20,6 +20,12 @@
         />
       </div>
       <Star :singleVote="item.vote_average" />
+      <Cast
+        v-for="(actor, indice) in allCast"
+        :key="indice"
+        :actor="actor"
+        :allCast="allCast"
+      />
       <div>
         <strong>Overview: </strong>{{ item.overview }}
         <h3 v-show="item.overview.length === 0">
@@ -32,6 +38,7 @@
 
 <script>
 import Star from "@/components/Star.vue";
+import Cast from "@/components/Cast.vue";
 
 export default {
   name: "filmList",
@@ -40,9 +47,13 @@ export default {
     link: String,
     voto: Number,
     id: Number,
+    actor: Object,
+    allCast: Array,
+    index: Number,
   },
   components: {
     Star,
+    Cast,
   },
   data() {
     return {

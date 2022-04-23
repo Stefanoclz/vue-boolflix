@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @insertedText="searchedText" />
-    <Main :movies="movies" :series="series" />
+    <Main :movies="movies" :series="series" :allCast="castMembers" />
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
             this.movies = response.data.results;
             console.log("movie", this.movies);
             this.searchMovieID();
-            this.loadCast();
+            this.loadMovieCast();
           } else if (kind === "tv") {
             this.series = response.data.results;
             console.log("serie", this.series);
@@ -60,6 +60,9 @@ export default {
     loadTvApi() {
       this.loadApi("tv");
     },
+    loadMovieCast() {
+      this.loadCast("movie");
+    },
     searchMovieID() {
       if (this.movies.length > 0) {
         for (let i = 0; i < this.movies.length; i++) {
@@ -69,21 +72,26 @@ export default {
       }
       console.log("idList", this.filmId);
     },
-    loadCast() {
+    loadCast(kind) {
       const params = {
         api_key: this.apiKey,
         language: "it-IT",
       };
       for (let i = 0; i < this.filmId.length; i++) {
         axios
-          .get(`https://api.themoviedb.org/3/movie/${this.filmId[i]}/credits`, {
-            params,
-          })
+          .get(
+            `https://api.themoviedb.org/3/${kind}/${this.filmId[i]}/credits`,
+            {
+              params,
+            }
+          )
           .then((response) => {
-            this.castMembers = response.data.cast;
-            console.log("TEST CAST", this.castMembers);
+            //let test = response.data.cast;
+            // console.log("TEST CAST", test);
+            this.castMembers.push(response.data.cast);
           });
       }
+      console.log("basta", this.castMembers);
     },
   },
 };
